@@ -17,6 +17,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundleIdentifier: "com.directedbyshawn.rubyapp",
     supportsTablet: true,
     icon: "./assets/ruby.icon",
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
+    },
   },
   android: {
     package: "com.directedbyshawn.rubyapp",
