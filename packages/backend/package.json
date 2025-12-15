@@ -9,7 +9,7 @@
     }
   },
   "scripts": {
-    "build": "convex deploy --cmd 'echo Convex backend deployed'",
+    "build": "convex deploy",
     "clean": "git clean -xdf .cache .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
