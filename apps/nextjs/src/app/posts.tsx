@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 
-import { api } from "@acme/backend/api";
+import { api } from "@acme/convex/api";
 
 export const CreatePostForm = () => {
   const [title, setTitle] = useState("");

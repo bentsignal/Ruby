@@ -13,7 +13,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@acme/backend": "workspace:*",
+    "@acme/convex": "workspace:*",
     "@acme/ui": "workspace:*",
     "@t3-oss/env-nextjs": "^0.13.8",
     "@tanstack/react-form": "catalog:",

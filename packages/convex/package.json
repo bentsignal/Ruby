@@ -1,11 +1,11 @@
 {
-  "name": "@acme/backend",
+  "name": "@acme/convex",
   "private": true,
   "type": "module",
   "exports": {
     "./api": {
-      "types": "./src/convex/_generated/api.d.ts",
-      "default": "./src/convex/_generated/api.js"
+      "types": "./src/_generated/api.d.ts",
+      "default": "./src/_generated/api.js"
     }
   },
   "scripts": {
