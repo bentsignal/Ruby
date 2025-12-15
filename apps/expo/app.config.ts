@@ -37,16 +37,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-router",
     "expo-secure-store",
     "expo-web-browser",
-    [
-      "expo-splash-screen",
-      {
-        backgroundColor: "#E4E4E7",
-        image: "./assets/ruby.icon",
-        dark: {
-          backgroundColor: "#18181B",
-          image: "./assets/ruby.icon",
-        },
-      },
-    ],
+    // [
+    //   "expo-splash-screen",
+    //   {
+    //     backgroundColor: "#E4E4E7",
+    //     image: "./assets/ruby.icon",
+    //     dark: {
+    //       backgroundColor: "#18181B",
+    //       image: "./assets/ruby.icon",
+    //     },
+    //   },
+    // ],
   ],
 });
