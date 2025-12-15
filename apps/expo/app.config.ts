@@ -7,7 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: "ruby",
   version: "0.1.0",
   orientation: "portrait",
-  icon: "./assets/icon-light.png",
+  icon: "./assets/ruby.icon",
   userInterfaceStyle: "automatic",
   updates: {
     fallbackToCacheTimeout: 0,

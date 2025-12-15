@@ -1,0 +1,110 @@
+{
+  "fill" : "automatic",
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode-specializations" : [
+            {
+              "appearance" : "tinted",
+              "value" : "darken"
+            }
+          ],
+          "fill-specializations" : [
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.94530,1.00000,0.87038,1.00000",
+                  "display-p3:0.96783,0.22909,0.21196,1.00000"
+                ]
+              }
+            }
+          ],
+          "glass" : false,
+          "image-name" : "logo-cutout-bg.png",
+          "name" : "logo-cutout-bg",
+          "opacity-specializations" : [
+            {
+              "value" : 1
+            },
+            {
+              "appearance" : "dark",
+              "value" : 0
+            }
+          ],
+          "position" : {
+            "scale" : 0.36,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode-specializations" : [
+            {
+              "appearance" : "tinted",
+              "value" : "normal"
+            }
+          ],
+          "fill-specializations" : [
+            {
+              "value" : "none"
+            },
+            {
+              "appearance" : "tinted",
+              "value" : "none"
+            }
+          ],
+          "glass-specializations" : [
+            {
+              "value" : false
+            },
+            {
+              "appearance" : "dark",
+              "value" : false
+            }
+          ],
+          "hidden" : false,
+          "image-name" : "logo-cutout-fg.png",
+          "name" : "logo-cutout-fg",
+          "opacity-specializations" : [
+            {
+              "value" : 0
+            },
+            {
+              "appearance" : "dark",
+              "value" : 1
+            },
+            {
+              "appearance" : "tinted",
+              "value" : 0
+            }
+          ],
+          "position" : {
+            "scale" : 0.36,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
