@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { useQuery } from "convex/react";
 
-import { api } from "@acme/backend/api";
+import { api } from "@acme/convex/api";
 
 export default function Home() {
   const posts = useQuery(api.posts.getAll);

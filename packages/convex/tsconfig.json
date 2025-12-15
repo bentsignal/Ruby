@@ -1,19 +1,23 @@
 {
   "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
+    /* These settings are not required by Convex and can be modified. */
     "allowJs": true,
     "strict": true,
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* These compiler options are required by Convex */
     "target": "ESNext",
     "lib": ["ES2021", "dom"],
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
     "isolatedModules": true,
-    "skipLibCheck": true,
     "noEmit": true,
     "composite": true
   },
   "include": ["*.ts", "src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "./src/_generated"]
 }

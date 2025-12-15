@@ -4,9 +4,6 @@
   "tasks": {
     "build": {
       "outputs": []
-    },
-    "dev": {
-      "persistent": false
     }
   }
 }
