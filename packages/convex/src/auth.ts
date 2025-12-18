@@ -12,9 +12,15 @@ import { env } from "./convex.env";
 
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
+const devOrigins = ["expo://*/*", "http://localhost:3000"];
+
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
   return betterAuth({
-    trustedOrigins: ["https://*.ruby.travel"],
+    trustedOrigins: [
+      "https://*.ruby.travel",
+      "ruby://",
+      ...(process.env.NODE_ENV === "development" ? devOrigins : []),
+    ],
     baseURL: env.SITE_URL,
     database: authComponent.adapter(ctx),
     emailAndPassword: {
