@@ -4,6 +4,4 @@
 
 @import "nativewind/theme";
 
-@source "./app/**/*.tsx";
-
 @import "@acme/tailwind-config/theme";

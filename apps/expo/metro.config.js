@@ -1,18 +1,25 @@
-// Learn more: https://docs.expo.dev/guides/monorepos/
-const path = require("node:path");
 const { getDefaultConfig } = require("expo/metro-config");
-const { FileStore } = require("metro-cache");
-const { withNativewind } = require("nativewind/metro");
+const { withNativeWind } = require("nativewind/metro");
+const path = require("node:path");
 
-const config = getDefaultConfig(__dirname, { isCSSEnabled: true });
+const projectRoot = __dirname;
+const workspaceRoot = path.resolve(projectRoot, "../..");
 
-config.cacheStores = [
-  new FileStore({
-    root: path.join(__dirname, "node_modules", ".cache", "metro"),
-  }),
+const config = getDefaultConfig(projectRoot, {
+  isCSSEnabled: true,
+});
+
+config.watchFolders = [workspaceRoot];
+
+config.resolver.nodeModulesPaths = [
+  path.resolve(projectRoot, "node_modules"),
+  path.resolve(workspaceRoot, "node_modules"),
 ];
 
 config.resolver.unstable_enablePackageExports = true;
 
 /** @type {import('expo/metro-config').MetroConfig} */
-module.exports = withNativewind(config, { input: "./src/styles.css" });
+module.exports = withNativeWind(config, {
+  input: "./src/styles.css",
+  inlineRem: false,
+});

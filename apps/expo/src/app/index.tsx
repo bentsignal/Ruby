@@ -9,8 +9,6 @@ import { authClient } from "~/lib/auth-client";
 export default function Home() {
   const posts = useQuery(api.posts.getAll);
   const { isAuthenticated } = useConvexAuth();
-  const user = authClient.useSession();
-  console.log(user);
   if (!isAuthenticated) {
     return <Login />;
   }
@@ -24,7 +22,7 @@ export default function Home() {
       </TouchableOpacity>
       {posts?.map((post) => (
         <View key={post._id} className="flex flex-col gap-2">
-          <Text className="px-4 text-red-500">{post.title}</Text>
+          <Text className="px-4 text-purple-800">{post.title}</Text>
           <Text className="text-white">{post.content}</Text>
         </View>
       ))}

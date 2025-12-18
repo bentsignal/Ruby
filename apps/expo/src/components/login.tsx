@@ -43,7 +43,7 @@ const Login = () => {
         onPress={handleSubmit}
         disabled={disabled}
       >
-        <Text className="text-primary-foreground p-2 font-bold">
+        <Text className="p-2 font-bold text-cyan-500">
           {type === "login" ? "Login" : "Register"}
         </Text>
       </TouchableOpacity>
@@ -52,7 +52,7 @@ const Login = () => {
           setType((current) => (current === "login" ? "register" : "login"))
         }
       >
-        <Text className="text-primary p-2">
+        <Text className="text-primary-foreground p-2">
           {type === "login"
             ? "Don't have an account? Register"
             : "Already have an account? Login"}
