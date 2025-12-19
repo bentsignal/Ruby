@@ -12,20 +12,26 @@ import { env } from "./convex.env";
 
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
-const devOrigins = ["expo://*/*", "http://localhost:3000"];
+const devOrigins = ["expo://*/*", "exp://*/*", "http://localhost:3000"];
 
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
   return betterAuth({
     trustedOrigins: [
       "https://*.ruby.travel",
       "ruby://",
-      ...(process.env.NODE_ENV === "development" ? devOrigins : []),
+      // ...(env.ENVIRONMENT === "development" ? devOrigins : []),
+      ...devOrigins,
     ],
     baseURL: env.SITE_URL,
     database: authComponent.adapter(ctx),
     emailAndPassword: {
       enabled: false,
     },
+    plugins: [
+      expo(),
+      convex({ authConfig }),
+      oAuthProxy({ productionURL: "https://www.ruby.travel" }),
+    ],
     socialProviders: {
       google: {
         prompt: "select_account",
@@ -34,10 +40,5 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
         redirectURI: "https://www.ruby.travel/api/auth/callback/google",
       },
     },
-    plugins: [
-      expo(),
-      convex({ authConfig }),
-      oAuthProxy({ productionURL: "https://www.ruby.travel" }),
-    ],
   });
 };

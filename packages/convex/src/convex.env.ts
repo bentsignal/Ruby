@@ -1,5 +1,6 @@
 export const vars = [
   "CONVEX_SITE_URL",
+  "ENVIRONMENT",
   "SITE_URL",
   "BETTER_AUTH_SECRET",
   "GOOGLE_CLIENT_ID",
