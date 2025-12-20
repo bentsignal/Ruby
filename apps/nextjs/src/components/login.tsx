@@ -43,6 +43,16 @@ export const Login = () => {
       </Button>
       <Button
         onClick={() =>
+          authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+          })
+        }
+      >
+        Login with Google
+      </Button>
+      <Button
+        onClick={() =>
           setType((current) => (current === "login" ? "register" : "login"))
         }
         variant="link"
