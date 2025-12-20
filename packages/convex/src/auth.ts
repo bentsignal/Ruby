@@ -15,21 +15,21 @@ import { env } from "./convex.env";
 // as well as helper methods for general use.
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
-const devOrigins = ["expo://*/*", "http://localhost:3000"];
-
 export const createAuth = (ctx: GenericCtx<DataModel>) => {
   return betterAuth({
-    trustedOrigins: [
-      env.SITE_URL,
-      "ruby://",
-      "https://*.ruby.travel",
-      ...(process.env.NODE_ENV === "development" ? devOrigins : []),
-    ],
-    baseURL: env.SITE_URL,
+    baseURL: env.CONVEX_SITE_URL,
+    trustedOrigins: [env.CONVEX_SITE_URL, "ruby://"],
     database: authComponent.adapter(ctx),
     // Configure simple, non-verified email/password to get started
     emailAndPassword: {
       enabled: true,
+    },
+    socialProviders: {
+      google: {
+        prompt: "select_account",
+        clientId: env.GOOGLE_CLIENT_ID,
+        clientSecret: env.GOOGLE_CLIENT_SECRET,
+      },
     },
     plugins: [
       // The Expo and Convex plugins are required

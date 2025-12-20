@@ -1,4 +1,4 @@
-import { useColorScheme } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
@@ -6,26 +6,19 @@ import { Provider } from "~/context/convex-context";
 
 import "../styles.css";
 
-// This is the main layout of the app
-// It wraps your pages with the providers they need
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   return (
     <Provider>
-      {/*
-          The Stack component displays the current page.
-          It also allows you to configure your screens 
-        */}
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "#c03484",
-          },
-          contentStyle: {
-            backgroundColor: colorScheme == "dark" ? "#09090B" : "#FFFFFF",
-          },
-        }}
-      />
+      <SafeAreaProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="login" />
+        </Stack>
+      </SafeAreaProvider>
       <StatusBar />
     </Provider>
   );

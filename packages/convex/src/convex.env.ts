@@ -3,6 +3,8 @@ export const vars = [
   "ENVIRONMENT",
   "SITE_URL",
   "BETTER_AUTH_SECRET",
+  "GOOGLE_CLIENT_ID",
+  "GOOGLE_CLIENT_SECRET",
 ] as const;
 
 export const env = vars.reduce(
