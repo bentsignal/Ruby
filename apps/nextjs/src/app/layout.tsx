@@ -5,7 +5,7 @@ import { cn } from "@acme/ui";
 import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
 import { Toaster } from "@acme/ui/toast";
 
-import { Provider } from "~/context/convex-context";
+// import { Provider as ConvexProvider } from "~/context/convex-context";
 import { env } from "~/env";
 
 import "~/app/styles.css";
@@ -58,7 +58,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <ThemeProvider>
-          <Provider>{props.children}</Provider>
+          {/* <ConvexProvider> */}
+          {props.children}
+          {/* </ConvexProvider> */}
           <div className="absolute right-4 bottom-4">
             <ThemeToggle />
           </div>
