@@ -14,7 +14,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   newArchEnabled: true,
   assetBundlePatterns: ["**/*"],
   ios: {
-    bundleIdentifier: "com.directedbyshawn.rubyapp",
+    bundleIdentifier: "rubyapp",
     supportsTablet: true,
     icon: "./assets/ruby.icon",
     infoPlist: {
@@ -22,7 +22,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
   android: {
-    package: "com.directedbyshawn.rubyapp",
+    package: "rubyapp",
     edgeToEdgeEnabled: true,
   },
   extra: {
