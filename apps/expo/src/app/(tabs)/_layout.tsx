@@ -22,6 +22,7 @@ export default function TabLayout() {
         },
         tabBarActiveTintColor: sidebarAccentForeground,
         tabBarInactiveTintColor: sidebarPrimaryForeground,
+        animation: "none",
       }}
     >
       <Tabs.Screen
