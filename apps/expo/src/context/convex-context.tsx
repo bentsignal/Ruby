@@ -6,6 +6,7 @@ import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
 import { ConvexQueryClient } from "@convex-dev/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConvexReactClient } from "convex/react";
+import { ConvexError } from "convex/values";
 
 import { env } from "~/expo.env";
 import { authClient } from "~/lib/auth-client";
@@ -18,7 +19,9 @@ const convexQueryClient = new ConvexQueryClient(convex);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false,
+      retry(failureCount, error) {
+        return failureCount < 3 && error instanceof ConvexError;
+      },
       queryKeyHashFn: convexQueryClient.hashFn(),
       queryFn: convexQueryClient.queryFn(),
     },
