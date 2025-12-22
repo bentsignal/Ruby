@@ -12,7 +12,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit",
-    "install:ios-sim": "rm -rf ./Ruby.app && tar -xzf sim.tar.gz && xcrun simctl install booted ./Ruby.app"
+    "install:ios-sim": "xcrun simctl install booted ./Ruby.app"
   },
   "dependencies": {
     "@acme/convex": "workspace:*",
