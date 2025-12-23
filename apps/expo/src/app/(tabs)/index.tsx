@@ -2,7 +2,6 @@ import { Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import { useConvex } from "convex/react";
-
 import { api } from "@acme/convex/api";
 
 interface Post {

@@ -5,7 +5,6 @@ import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
 import { ConvexQueryClient } from "@convex-dev/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConvexReactClient } from "convex/react";
-
 import { env } from "~/env";
 import { authClient } from "~/lib/auth-client";
 

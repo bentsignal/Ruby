@@ -1,6 +1,5 @@
 import { Tabs } from "expo-router";
 import { House, UserRound } from "lucide-react-native";
-
 import { useVar } from "~/hooks/use-color";
 
 export default function TabLayout() {

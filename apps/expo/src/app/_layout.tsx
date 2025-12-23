@@ -6,11 +6,9 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import * as SystemUI from "expo-system-ui";
-
 import { Provider } from "~/context/convex-context";
 import { useVar } from "~/hooks/use-color";
 import { drawerHeightPercentage as loginDrawerHeightPercentage } from "./login";
-
 import "../styles.css";
 
 void SplashScreen.preventAutoHideAsync();

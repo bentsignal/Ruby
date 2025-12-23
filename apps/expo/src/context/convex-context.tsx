@@ -7,7 +7,6 @@ import { ConvexQueryClient } from "@convex-dev/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConvexReactClient } from "convex/react";
 import { ConvexError } from "convex/values";
-
 import { env } from "~/expo.env";
 import { authClient } from "~/lib/auth-client";
 

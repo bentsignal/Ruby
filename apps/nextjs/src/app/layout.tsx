@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-
 import { cn } from "@acme/ui";
 import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
 import { Toaster } from "@acme/ui/toast";
-
 // import { Provider as ConvexProvider } from "~/context/convex-context";
 import { env } from "~/env";
-
 import "~/app/styles.css";
 
 export const metadata: Metadata = {
