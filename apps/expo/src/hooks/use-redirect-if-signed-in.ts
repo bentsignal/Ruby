@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "expo-router";
+
 import { authClient } from "~/lib/auth-client";
 
 export const useRedirectIfSignedIn = () => {

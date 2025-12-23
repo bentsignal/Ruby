@@ -1,5 +1,6 @@
 import betterAuth from "@convex-dev/better-auth/convex.config.js";
 import { defineApp } from "convex/server";
+
 import { verifyEnv } from "./convex.env";
 
 verifyEnv();
