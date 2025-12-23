@@ -1,4 +1,5 @@
 import { Text, useWindowDimensions, View } from "react-native";
+
 import * as Auth from "~/features/auth/atom";
 import { useRedirectIfSignedIn } from "~/hooks/use-redirect-if-signed-in";
 
