@@ -1,29 +1,32 @@
-import { useEffect } from "react";
-import { Text, View } from "react-native";
-import { useRouter } from "expo-router";
-
+import { Text, useWindowDimensions, View } from "react-native";
 import * as Auth from "~/features/auth/atom";
-import { authClient } from "~/lib/auth-client";
+import { useRedirectIfSignedIn } from "~/hooks/use-redirect-if-signed-in";
 
-export default function Login() {
-  const router = useRouter();
-  const session = authClient.useSession();
-  const imSignedIn = session.data !== null;
+const drawerHeightPercentage = 0.35;
 
-  useEffect(() => {
-    if (imSignedIn) {
-      if (router.canGoBack()) {
-        router.back();
-      } else {
-        router.replace("/");
-      }
-    }
-  }, [imSignedIn, router]);
+function Login() {
+  useRedirectIfSignedIn();
+
+  const { height } = useWindowDimensions();
+  const drawerHeight = height * drawerHeightPercentage;
 
   return (
-    <View className="h-full w-full flex-col gap-4 px-6 py-8">
-      <Text className="text-foreground text-2xl font-bold">Welcome Back!</Text>
+    <View
+      style={{ height: drawerHeight }}
+      className="w-full flex-col justify-center gap-4 px-6 py-8"
+    >
+      <Text className="text-foreground text-2xl font-bold">Welcome back!</Text>
+      <Text className="text-muted-foreground">
+        Please choose your preferred sign in method
+      </Text>
       <Auth.GoogleSignInButton />
+      <Text className="text-muted-foreground text-center text-xs">
+        By continuing, you agree to our Terms of Service, and acknowledge that
+        you have read our Privacy Policy.
+      </Text>
     </View>
   );
 }
+
+export { drawerHeightPercentage };
+export default Login;

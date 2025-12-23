@@ -1,23 +1,23 @@
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-
-import { Provider } from "~/context/convex-context";
-
-import "../styles.css";
-
 import { useEffect } from "react";
-import { useColorScheme } from "react-native";
+import { Platform, useColorScheme } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { isLiquidGlassAvailable } from "expo-glass-effect";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
 import * as SystemUI from "expo-system-ui";
-
+import { Provider } from "~/context/convex-context";
 import { useVar } from "~/hooks/use-color";
+import { drawerHeightPercentage as loginDrawerHeightPercentage } from "./login";
+import "../styles.css";
 
 void SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const backgroundColor = useVar("background");
   const colorScheme = useColorScheme();
+
+  const liquidGlassIsAvailable = isLiquidGlassAvailable();
 
   useEffect(() => {
     const init = async () => {
@@ -44,9 +44,17 @@ export default function RootLayout() {
           <Stack.Screen
             name="login"
             options={{
-              presentation: "formSheet",
-              sheetAllowedDetents: [0.45],
+              presentation:
+                Platform.OS === "ios" && liquidGlassIsAvailable
+                  ? "formSheet"
+                  : "modal",
+              sheetAllowedDetents: [loginDrawerHeightPercentage],
               sheetGrabberVisible: true,
+              contentStyle: {
+                backgroundColor: liquidGlassIsAvailable
+                  ? "transparent"
+                  : backgroundColor,
+              },
             }}
           />
         </Stack>

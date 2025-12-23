@@ -14,10 +14,7 @@ export default function Home() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View
-      className="flex flex-col gap-2 px-4"
-      style={{ paddingTop: insets.top }}
-    >
+    <View className="flex-col gap-2 px-4" style={{ paddingTop: insets.top }}>
       <Posts />
     </View>
   );
@@ -40,7 +37,7 @@ function Posts() {
 
 const Post = ({ post }: { post?: Post }) => {
   return (
-    <View className="bg-card border-border flex flex-col gap-2 rounded-md border p-4 shadow">
+    <View className="bg-card border-border flex-col gap-2 rounded-md border p-4 shadow">
       <Text className="text-card-foreground font-bold">{post?.title}</Text>
       <Text className="text-card-foreground">{post?.content}</Text>
     </View>
