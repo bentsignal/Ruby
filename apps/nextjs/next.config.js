@@ -14,6 +14,7 @@ const config = {
   typescript: { ignoreBuildErrors: true },
 
   cacheComponents: true,
+  reactCompiler: true,
 };
 
 export default config;

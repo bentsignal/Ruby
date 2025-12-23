@@ -50,6 +50,9 @@ const geistMono = Geist_Mono({
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <ReactScan />
+      </head>
       <body
         className={cn(
           "bg-background text-foreground min-h-screen font-sans antialiased",
@@ -70,3 +73,18 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     </html>
   );
 }
+
+const ReactScan = () => {
+  if (env.NODE_ENV !== "development") {
+    return null;
+  }
+  return (
+    <>
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <script
+        crossOrigin="anonymous"
+        src="//unpkg.com/react-scan/dist/auto.global.js"
+      />
+    </>
+  );
+};
