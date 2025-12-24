@@ -12,7 +12,7 @@ const TabIcon = ({
   color: string;
   focused: boolean;
 }) => {
-  return <Icon strokeWidth={focused ? 3 : 1.75} color={color} size={20} />;
+  return <Icon strokeWidth={focused ? 3 : 1.75} color={color} size={24} />;
 };
 
 export default function TabLayout() {
@@ -29,11 +29,12 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: sidebar,
           borderTopWidth: 1,
+          paddingTop: 4,
           borderTopColor: sidebarBorder,
-          paddingTop: 12,
         },
         tabBarActiveTintColor: sidebarAccentForeground,
         tabBarInactiveTintColor: sidebarPrimaryForeground,
+        tabBarShowLabel: false,
         animation: "none",
       }}
     >
