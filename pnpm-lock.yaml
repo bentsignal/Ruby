@@ -91,6 +91,9 @@ importers:
 
   apps/expo:
     dependencies:
+      '@acme/context':
+        specifier: workspace:*
+        version: link:../../packages/context
       '@acme/convex':
         specifier: workspace:*
         version: link:../../packages/convex
@@ -318,6 +321,30 @@ importers:
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  packages/context:
+    devDependencies:
+      '@acme/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 22.18.12
+      '@types/react':
+        specifier: catalog:react19
+        version: 19.1.12
+      prettier:
+        specifier: 'catalog:'
+        version: 3.6.2
+      react:
+        specifier: catalog:react19
+        version: 19.1.4
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
