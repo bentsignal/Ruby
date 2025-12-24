@@ -6,7 +6,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 
-import { Provider } from "~/context/convex-context";
+import { Provider as ConvexProvider } from "~/context/convex-context";
+import * as Auth from "~/features/auth/atom";
 import { useAuthDrawerSize } from "~/features/auth/hooks/use-auth-drawer-size";
 import { useVar } from "~/hooks/use-color";
 
@@ -36,34 +37,36 @@ export default function RootLayout() {
   }, [fontsAreLoaded, backgroundColorsAreLoaded]);
 
   return (
-    <Provider>
-      <SafeAreaProvider>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: "transparent" },
-          }}
-        >
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen
-            name="login"
-            options={{
-              presentation:
-                Platform.OS === "ios" && liquidGlassIsAvailable
-                  ? "formSheet"
-                  : "modal",
-              sheetAllowedDetents: [loginDrawerHeightPercentage],
-              sheetGrabberVisible: true,
-              contentStyle: {
-                backgroundColor: liquidGlassIsAvailable
-                  ? "transparent"
-                  : backgroundColor,
-              },
+    <ConvexProvider>
+      <Auth.Provider>
+        <SafeAreaProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: "transparent" },
             }}
-          />
-        </Stack>
-      </SafeAreaProvider>
-      <StatusBar />
-    </Provider>
+          >
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen
+              name="login"
+              options={{
+                presentation:
+                  Platform.OS === "ios" && liquidGlassIsAvailable
+                    ? "formSheet"
+                    : "modal",
+                sheetAllowedDetents: [loginDrawerHeightPercentage],
+                sheetGrabberVisible: true,
+                contentStyle: {
+                  backgroundColor: liquidGlassIsAvailable
+                    ? "transparent"
+                    : backgroundColor,
+                },
+              }}
+            />
+          </Stack>
+        </SafeAreaProvider>
+        <StatusBar />
+      </Auth.Provider>
+    </ConvexProvider>
   );
 }

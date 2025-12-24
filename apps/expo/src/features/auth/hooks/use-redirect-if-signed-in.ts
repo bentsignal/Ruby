@@ -1,19 +1,23 @@
 import { useEffect } from "react";
 import { useRouter } from "expo-router";
 
-import { authClient } from "~/lib/auth-client";
+import { useRequiredContext } from "@acme/context";
+
+import * as Auth from "~/features/auth/atom";
 
 export const useRedirectIfSignedIn = () => {
+  useRequiredContext(Auth.Context);
+  const imSignedIn = Auth.useContext((c) => c.imSignedIn);
+
   const router = useRouter();
-  const session = authClient.useSession();
-  const imNotSignedIn = session.data === null;
 
   useEffect(() => {
-    if (imNotSignedIn) return;
-    if (router.canGoBack()) {
+    if (imSignedIn && router.canGoBack()) {
       router.back();
-    } else {
-      router.replace("/(tabs)");
+      return;
     }
-  }, [imNotSignedIn, router]);
+    if (imSignedIn) {
+      return;
+    }
+  }, [imSignedIn, router]);
 };

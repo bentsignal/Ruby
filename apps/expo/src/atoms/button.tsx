@@ -5,15 +5,15 @@ import { cva } from "class-variance-authority";
 import { cn } from "~/utils/style-utils";
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 flex-row items-center justify-center gap-2 rounded-lg whitespace-nowrap transition-all outline-none disabled:opacity-50",
+  "inline-flex shrink-0 flex-row items-center justify-center gap-2 rounded-xl whitespace-nowrap transition-all outline-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary hover:bg-primary/90 shadow-xs",
+        default: "bg-primary active:bg-primary/90 shadow-xs",
         destructive: "bg-destructive shadow-xs",
         outline: "bg-background border-border border shadow-xs",
         secondary: "bg-secondary shadow-xs",
-        ghost: "hover:bg-accent dark:hover:bg-accent/50",
+        ghost: "active:bg-accent",
         link: "",
       },
       size: {
