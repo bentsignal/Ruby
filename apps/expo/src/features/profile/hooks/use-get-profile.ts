@@ -10,7 +10,7 @@ const useGetProfile = ({ profileId }: { profileId?: Id<"profiles"> }) => {
     queryKey: ["profile", profileId],
     queryFn: async () => {
       if (!profileId) return null;
-      return await convex.query(api.profile.getProfile, { profileId });
+      return await convex.query(api.profile.get, { profileId });
     },
   });
   return profile;
