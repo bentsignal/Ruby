@@ -11,7 +11,7 @@ const redactProfileData = (profile: Doc<"profiles">): PublicProfile => {
   return publicProfile;
 };
 
-export const getPublicProfile = query({
+export const get = query({
   args: {
     profileId: v.id("profiles"),
   },
@@ -24,8 +24,8 @@ export const getPublicProfile = query({
   },
 });
 
-export const getMyPublicProfile = authedQuery({
-  handler: async (ctx): Promise<PublicProfile | null> => {
+export const getMine = authedQuery({
+  handler: async (ctx) => {
     const myProfile = await ctx.db
       .query("profiles")
       .withIndex("by_userId", (q) => q.eq("userId", ctx.user.subject))
@@ -33,6 +33,6 @@ export const getMyPublicProfile = authedQuery({
     if (!myProfile) {
       return null;
     }
-    return redactProfileData(myProfile);
+    return myProfile;
   },
 });
