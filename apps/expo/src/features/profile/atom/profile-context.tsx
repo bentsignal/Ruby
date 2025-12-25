@@ -18,9 +18,7 @@ const Provider = ({
   profile: Doc<"profiles">;
   children: ReactNode;
 }) => {
-  const id = profile._id;
-  const name = profile.name;
-  const image = profile.image;
+  const { _id: id, name, image } = profile;
   const contextValue = { id, name, image };
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };
