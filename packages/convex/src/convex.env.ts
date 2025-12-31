@@ -1,26 +1,11 @@
-export const vars = [
-  "CONVEX_SITE_URL",
-  "ENVIRONMENT",
-  "SITE_URL",
-  "BETTER_AUTH_SECRET",
-  "GOOGLE_CLIENT_ID",
-  "GOOGLE_CLIENT_SECRET",
-] as const;
+import { createEnv } from "convex-env";
+import { v } from "convex/values";
 
-export const env = vars.reduce(
-  (acc, name) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    acc[name] = process.env[name]!;
-    return acc;
-  },
-  {} as Record<(typeof vars)[number], string>,
-);
-
-export const verifyEnv = () => {
-  vars.forEach((name) => {
-    const value = process.env[name];
-    if (value === undefined) {
-      throw new Error("Missing environment variable: " + name);
-    }
-  });
-};
+export const env = createEnv({
+  CONVEX_SITE_URL: v.string(),
+  ENVIRONMENT: v.string(),
+  SITE_URL: v.string(),
+  BETTER_AUTH_SECRET: v.string(),
+  GOOGLE_CLIENT_ID: v.string(),
+  GOOGLE_CLIENT_SECRET: v.string(),
+});
