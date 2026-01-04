@@ -367,8 +367,8 @@ importers:
         specifier: 'catalog:'
         version: 1.31.0(react@19.1.4)
       convex-env:
-        specifier: ^2.2.0
-        version: 2.2.0(@standard-schema/spec@1.1.0)(convex@1.31.0(react@19.1.4))(react@19.1.4)(typescript@5.9.3)(zod@4.1.12)
+        specifier: ^2.3.0
+        version: 2.3.0(@standard-schema/spec@1.1.0)(convex@1.31.0(react@19.1.4))(react@19.1.4)(typescript@5.9.3)(zod@4.1.12)
       convex-helpers:
         specifier: ^0.1.108
         version: 0.1.108(@standard-schema/spec@1.1.0)(convex@1.31.0(react@19.1.4))(react@19.1.4)(typescript@5.9.3)(zod@4.1.12)
@@ -4393,8 +4393,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  convex-env@2.2.0:
-    resolution: {integrity: sha512-fuZAFFX0Mtk2LTb6E2vzjfD5lt4Xpz5to3o1K/Ds1yh3ymDAJKbOOXZ/PdMKWtpS9V63y6EQUtW41lqoV4BL1A==}
+  convex-env@2.3.0:
+    resolution: {integrity: sha512-cjOKQfKyhTz7majdnJeFoF/bUWVqT3ECwE6tbQUNRAm8sYlZMJwh10Xn/biokFkvJXotg7tqlKLxp5cMypUBWQ==}
     peerDependencies:
       convex: '>=1.20.0'
 
@@ -12369,7 +12369,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  convex-env@2.2.0(@standard-schema/spec@1.1.0)(convex@1.31.0(react@19.1.4))(react@19.1.4)(typescript@5.9.3)(zod@4.1.12):
+  convex-env@2.3.0(@standard-schema/spec@1.1.0)(convex@1.31.0(react@19.1.4))(react@19.1.4)(typescript@5.9.3)(zod@4.1.12):
     dependencies:
       convex: 1.31.0(react@19.1.4)
       convex-helpers: 0.1.108(@standard-schema/spec@1.1.0)(convex@1.31.0(react@19.1.4))(react@19.1.4)(typescript@5.9.3)(zod@4.1.12)
