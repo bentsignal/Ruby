@@ -101,8 +101,8 @@ Uses **Rostra** (lightweight hook-based store). Values returned from selectors w
 import { useState } from "react";
 import { createStore } from "rostra";
 
-function useInternalStore() {
-  const [count, setCount] = useState(0);
+function useInternalStore({ initialCount }: { initialCount: number }) {
+  const [count, setCount] = useState(initialCount);
   const increment = () => setCount(prev => prev + 1);
   return { count, increment };
 };
@@ -111,7 +111,7 @@ const { Store, useStore } = createStore(useInternalStore);
 
 function Counter() {
   return (
-    <Store>
+    <Store initialCount={10}>
       <Value />
       <IncrementButton />
     </Store>
