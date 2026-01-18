@@ -15,5 +15,5 @@ export default function Home() {
 
   const posts = data ?? [];
 
-  return <PostList posts={[]} />;
+  return <PostList posts={posts} />;
 }
