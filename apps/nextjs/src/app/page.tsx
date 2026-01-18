@@ -1,16 +1,19 @@
-import Link from "next/link";
+"use client";
+
+import { Button } from "@acme/ui/button";
+
+import { Login } from "~/components/login";
+import { useStore as useAuthStore } from "~/lib/auth-store";
 
 export default function HomePage() {
+  const imSignedIn = useAuthStore((s) => s.imSignedIn);
+  const signOut = useAuthStore((s) => s.signOut);
+  if (imSignedIn) {
+    return <Button onClick={signOut}>Sign out</Button>;
+  }
   return (
     <div className="flex h-screen w-screen items-center justify-center">
-      <Link href="/open">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://ws88jscyfn.ufs.sh/f/iUXo70XEUowpaM66b2RTJkgLy0siReFVDBWAOq9Mmxpzfu6l"
-          alt="Ruby"
-          className="size-92 cursor-pointer"
-        />
-      </Link>
+      <Login />
     </div>
   );
 }

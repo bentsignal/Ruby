@@ -12,7 +12,7 @@ if (scheme === undefined || scheme.length === 0) {
 }
 
 export const authClient = createAuthClient({
-  baseURL: env("CONVEX_SITE_URL"),
+  baseURL: "http://localhost:3000",
   plugins: [
     expoClient({
       scheme: scheme as string,

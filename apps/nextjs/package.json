@@ -26,6 +26,7 @@
     "next": "^16.0.9",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
+    "rostra": "catalog:",
     "superjson": "2.2.3",
     "zod": "catalog:"
   },

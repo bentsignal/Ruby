@@ -5,12 +5,14 @@ import { useState } from "react";
 import { Button } from "@acme/ui/button";
 
 import { authClient } from "~/lib/auth-client";
+import { useStore as useAuthStore } from "~/lib/auth-store";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [type, setType] = useState<"login" | "register">("login");
   const [loading, setLoading] = useState(false);
+  const signInWithGoogle = useAuthStore((s) => s.signInWithGoogle);
   const handleSubmit = async () => {
     if (type === "login") {
       setLoading(true);
@@ -41,16 +43,7 @@ export const Login = () => {
       <Button onClick={handleSubmit} className="w-full" disabled={loading}>
         {type === "login" ? "Login" : "Register"}
       </Button>
-      <Button
-        onClick={() =>
-          authClient.signIn.social({
-            provider: "google",
-            callbackURL: "/",
-          })
-        }
-      >
-        Login with Google
-      </Button>
+      <Button onClick={signInWithGoogle}>Login with Google</Button>
       <Button
         onClick={() =>
           setType((current) => (current === "login" ? "register" : "login"))
