@@ -29,6 +29,7 @@
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo run typecheck",
     "ui-add": "turbo run ui-add",
+    "create-package": "turbo gen init",
     "android": "expo run:android",
     "ios": "expo run:ios"
   },
