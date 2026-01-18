@@ -19,6 +19,7 @@ catalog:
   convex: 1.31.0
   eslint: ^9.38.0
   prettier: ^3.6.2
+  rostra: ^1.0.0
   tailwindcss: ^4.1.16
   typescript: ^5.9.3
   vite: 7.1.12

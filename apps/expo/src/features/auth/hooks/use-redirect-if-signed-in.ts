@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { useRouter } from "expo-router";
 
-import { useRequiredContext } from "@acme/context";
-
 import * as Auth from "~/features/auth/atom";
 
 export const useRedirectIfSignedIn = () => {
-  useRequiredContext(Auth.Context);
-  const imSignedIn = Auth.useContext((c) => c.imSignedIn);
+  const imSignedIn = Auth.useStore((s) => s.imSignedIn);
 
   const router = useRouter();
 

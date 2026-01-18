@@ -1,2 +1,2 @@
 export * from "./auth-components";
-export * from "./auth-context";
+export * from "./auth-store";

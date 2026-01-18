@@ -11,7 +11,7 @@ export const Post = ({ post }: { post: PostWithProfile }) => {
   const foreground = useVar("foreground");
   return (
     <View className="mb-8 flex-col gap-2">
-      <Profile.Provider profile={post.profile}>
+      <Profile.Store profile={post.profile}>
         <View className="mx-2 flex-row items-center gap-2">
           <Profile.ProfileImage className="mt-1" variant="post" />
           <Profile.ProfileInfo />
@@ -24,7 +24,7 @@ export const Post = ({ post }: { post: PostWithProfile }) => {
             <Image source={{ uri: imageUrl }} key={imageUrl} />
           ))}
         </PagerView>
-      </Profile.Provider>
+      </Profile.Store>
       <View className="mx-2 flex-row items-center gap-6">
         <Heart className="size-4.5" color={foreground} />
         <MessageCircle className="size-3" color={foreground} />

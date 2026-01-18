@@ -1,12 +1,7 @@
 import { Image, Text, View } from "react-native";
 
-import { useRequiredContext } from "@acme/context";
-
 import { cn } from "~/utils/style-utils";
-import {
-  Context as ProfileContext,
-  useContext as useProfileContext,
-} from "./profile-context";
+import { useStore as useProfileStore } from "./profile-store";
 
 const ProfileImage = ({
   className,
@@ -15,8 +10,7 @@ const ProfileImage = ({
   className?: string;
   variant?: "post" | "profile";
 }) => {
-  useRequiredContext(ProfileContext);
-  const image = useProfileContext((c) => c.image);
+  const image = useProfileStore((s) => s.image);
   if (!image) return <BlankProfileImage />;
   return (
     <Image
@@ -49,9 +43,8 @@ const BlankProfileImage = ({
 };
 
 const ProfileInfo = () => {
-  useRequiredContext(ProfileContext);
-  const name = useProfileContext((c) => c.name);
-  const username = useProfileContext((c) => c.username);
+  const name = useProfileStore((s) => s.name);
+  const username = useProfileStore((s) => s.username);
   return (
     <View className="">
       <Text className="text-foreground text-base font-bold">{name}</Text>

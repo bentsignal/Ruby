@@ -1,21 +1,15 @@
 import { Pressable, Text } from "react-native";
 import { LogOut } from "lucide-react-native";
 
-import { useRequiredContext } from "@acme/context";
-
 import { Button } from "~/atoms/button";
-import {
-  Context as AuthContext,
-  useContext as useAuthContext,
-} from "~/features/auth/atom/auth-context";
+import { useStore as useAuthStore } from "~/features/auth/atom/auth-store";
 import { GoogleIcon } from "~/features/auth/icons";
 import { useVar } from "~/hooks/use-color";
 import { cn } from "~/utils/style-utils";
 
 const GoogleSignInButton = () => {
-  useRequiredContext(AuthContext);
-  const signInWithGoogle = useAuthContext((c) => c.signInWithGoogle);
-  const disabled = useAuthContext((c) => c.isLoading || c.imSignedIn);
+  const signInWithGoogle = useAuthStore((s) => s.signInWithGoogle);
+  const disabled = useAuthStore((s) => s.isLoading || s.imSignedIn);
   return (
     <Pressable
       onPress={signInWithGoogle}
@@ -41,9 +35,8 @@ const GoogleSignInButton = () => {
 };
 
 const SignOutButton = ({ className }: { className?: string }) => {
-  useRequiredContext(AuthContext);
-  const signOut = useAuthContext((c) => c.signOut);
-  const disabled = useAuthContext((c) => c.isLoading || !c.imSignedIn);
+  const signOut = useAuthStore((s) => s.signOut);
+  const disabled = useAuthStore((s) => s.isLoading || !s.imSignedIn);
   const primaryForeground = useVar("secondary-foreground");
   return (
     <Button

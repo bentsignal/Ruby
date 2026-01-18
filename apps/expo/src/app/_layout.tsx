@@ -38,7 +38,7 @@ export default function RootLayout() {
 
   return (
     <ConvexProvider>
-      <Auth.Provider>
+      <Auth.Store>
         <SafeAreaProvider>
           <Stack
             screenOptions={{
@@ -66,7 +66,7 @@ export default function RootLayout() {
           </Stack>
         </SafeAreaProvider>
         <StatusBar />
-      </Auth.Provider>
+      </Auth.Store>
     </ConvexProvider>
   );
 }

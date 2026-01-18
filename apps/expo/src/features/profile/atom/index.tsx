@@ -1,2 +1,2 @@
-export * from "./profile-context";
+export * from "./profile-store";
 export * from "./profile-components";

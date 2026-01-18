@@ -1,7 +1,5 @@
 import { Text, View } from "react-native";
 
-import { useRequiredContext } from "@acme/context";
-
 import { LoadingSpinner } from "~/components/loading-spinner";
 import * as Auth from "~/features/auth/atom";
 import { useAuthDrawerSize } from "~/features/auth/hooks/use-auth-drawer-size";
@@ -33,8 +31,7 @@ function Login() {
 }
 
 const LoadingOverlay = () => {
-  useRequiredContext(Auth.Context);
-  const isLoading = Auth.useContext((c) => c.isLoading);
+  const isLoading = Auth.useStore((s) => s.isLoading);
   const foreground = useVar("foreground");
 
   if (!isLoading) return null;
