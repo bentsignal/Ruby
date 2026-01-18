@@ -1,7 +1,7 @@
 import type { AuthFunctions, GenericCtx } from "@convex-dev/better-auth";
 import { expo } from "@better-auth/expo";
 import { createClient } from "@convex-dev/better-auth";
-import { convex, crossDomain } from "@convex-dev/better-auth/plugins";
+import { convex } from "@convex-dev/better-auth/plugins";
 import { betterAuth } from "better-auth";
 
 import type { DataModel } from "./_generated/dataModel";
@@ -41,11 +41,7 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
         clientSecret: env.GOOGLE_CLIENT_SECRET,
       },
     },
-    plugins: [
-      expo(),
-      convex({ authConfig }),
-      crossDomain({ siteUrl: env.SITE_URL }),
-    ],
+    plugins: [expo(), convex({ authConfig })],
   });
 };
 
