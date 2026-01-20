@@ -19,6 +19,12 @@ const config: NextConfig = {
         search: "",
       },
     ],
+    localPatterns: [
+      {
+        pathname: "/src/assets/**",
+        search: "",
+      },
+    ],
     formats: ["image/avif", "image/webp"],
   },
 
