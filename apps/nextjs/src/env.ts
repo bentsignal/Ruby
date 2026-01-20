@@ -9,7 +9,9 @@ export const env = createEnv({
       .enum(["development", "production", "test"])
       .default("development"),
   },
-  server: {},
+  server: {
+    UPLOADTHING_APP_ID: z.string(),
+  },
   client: {
     NEXT_PUBLIC_CONVEX_URL: z.string(),
     NEXT_PUBLIC_CONVEX_SITE_URL: z.string(),
@@ -18,7 +20,8 @@ export const env = createEnv({
   /**
    * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
    */
-  experimental__runtimeEnv: {
+  runtimeEnv: {
+    UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
     NEXT_PUBLIC_CONVEX_SITE_URL: process.env.NEXT_PUBLIC_CONVEX_SITE_URL,
