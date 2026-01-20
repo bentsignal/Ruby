@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, Home, Search, UserRound } from "lucide-react";
+import { Bell, Home, PlusIcon, Search, UserRound } from "lucide-react";
 
 import { cn } from "@acme/ui";
+import { Button } from "@acme/ui/button";
 import * as HoverCard from "@acme/ui/hover-card";
+import { ThemeSwitcher } from "@acme/ui/theme";
 
 import { SmallProfilePreview } from "~/features/profile/molecules/small-profile-preview";
 
 function TabBar() {
   const pathname = usePathname();
   return (
-    <nav
+    <div
       className={cn(
         "flex items-center gap-1",
         "fixed bottom-6 left-1/2 z-50 -translate-x-1/2",
@@ -52,11 +54,15 @@ function TabBar() {
             />
           </TabBarLink>
         </HoverCard.Trigger>
-        <HoverCard.Content>
+        <HoverCard.Content className="flex w-auto! flex-col items-start">
           <SmallProfilePreview />
+          <ThemeSwitcher />
         </HoverCard.Content>
       </HoverCard.Container>
-    </nav>
+      <Button size="icon" className="rounded-full">
+        <PlusIcon size={24} />
+      </Button>
+    </div>
   );
 }
 

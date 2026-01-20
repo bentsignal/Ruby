@@ -32,10 +32,24 @@ function GoogleSignInButton({ className }: { className?: string }) {
   );
 }
 
-function TakeMeToLogin() {
+function TakeMeToLoginButton() {
   const setIsLoginModalOpen = useAuthStore((s) => s.setIsLoginModalOpen);
   return (
     <Button className="w-full" onClick={() => setIsLoginModalOpen(true)}>
+      <LogIn size={16} />
+      <span>Take me to login</span>
+    </Button>
+  );
+}
+
+function TakeMeToLoginLink() {
+  const setIsLoginModalOpen = useAuthStore((s) => s.setIsLoginModalOpen);
+  return (
+    <Button
+      variant="link"
+      onClick={() => setIsLoginModalOpen(true)}
+      className="px-0!"
+    >
       <LogIn size={16} />
       <span>Take me to login</span>
     </Button>
@@ -53,4 +67,26 @@ function SignOutButton() {
   );
 }
 
-export { GoogleSignInButton, TakeMeToLogin, SignOutButton };
+function SignOutLink() {
+  const signOut = useAuthStore((s) => s.signOut);
+  const disabled = useAuthStore((s) => s.isLoading || !s.imSignedIn);
+  return (
+    <Button
+      variant="link"
+      onClick={signOut}
+      disabled={disabled}
+      className="px-0!"
+    >
+      <LogOut size={16} />
+      <span>Sign out</span>
+    </Button>
+  );
+}
+
+export {
+  GoogleSignInButton,
+  TakeMeToLoginButton,
+  TakeMeToLoginLink,
+  SignOutButton,
+  SignOutLink,
+};

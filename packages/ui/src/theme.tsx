@@ -182,3 +182,21 @@ export function ThemeToggle() {
     </DropdownMenu>
   );
 }
+
+export function ThemeSwitcher() {
+  const { setTheme, themeMode } = useTheme();
+  if (themeMode !== "dark") {
+    return (
+      <Button variant="link" onClick={() => setTheme("dark")} className="px-0!">
+        <MoonIcon />
+        Switch to Dark Mode
+      </Button>
+    );
+  }
+  return (
+    <Button variant="link" onClick={() => setTheme("light")} className="px-0!">
+      <SunIcon />
+      Switch to Light Mode
+    </Button>
+  );
+}

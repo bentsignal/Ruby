@@ -4,10 +4,10 @@ function SmallProfilePreview() {
   const myProfile = Auth.useStore((s) => s.myProfile);
   const imNotSignedIn = Auth.useStore((s) => s.imSignedIn === false);
   if (imNotSignedIn) {
-    return <Auth.TakeMeToLogin />;
+    return <Auth.TakeMeToLoginLink />;
   }
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col items-start gap-2">
       <div className="flex items-center gap-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -22,7 +22,7 @@ function SmallProfilePreview() {
           </p>
         </div>
       </div>
-      <Auth.SignOutButton />
+      <Auth.SignOutLink />
     </div>
   );
 }
