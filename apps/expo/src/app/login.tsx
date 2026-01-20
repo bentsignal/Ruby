@@ -14,10 +14,10 @@ function Login() {
     <View style={{ height: drawerHeight }} className="relative">
       <LoadingOverlay />
       <View className="h-full w-full flex-col justify-center gap-4 px-6 py-8">
-        <Text className="text-foreground text-2xl font-bold">
-          Welcome back!
+        <Text className="text-foreground text-center text-2xl font-bold">
+          Welcome to Ruby!
         </Text>
-        <Text className="text-muted-foreground">
+        <Text className="text-muted-foreground text-center">
           Please choose your preferred sign in method
         </Text>
         <Auth.GoogleSignInButton />

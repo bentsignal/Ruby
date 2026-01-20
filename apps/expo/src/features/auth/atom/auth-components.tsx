@@ -2,10 +2,10 @@ import { Pressable, Text } from "react-native";
 import { LogOut } from "lucide-react-native";
 
 import { Button } from "~/atoms/button";
-import { useStore as useAuthStore } from "~/features/auth/atom/auth-store";
 import { GoogleIcon } from "~/features/auth/icons";
 import { useVar } from "~/hooks/use-color";
 import { cn } from "~/utils/style-utils";
+import { useStore as useAuthStore } from "./auth-store";
 
 const GoogleSignInButton = () => {
   const signInWithGoogle = useAuthStore((s) => s.signInWithGoogle);

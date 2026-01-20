@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 
 import { cn } from "@acme/ui";
 import { ThemeProvider } from "@acme/ui/theme";
@@ -7,7 +7,8 @@ import { Toaster } from "@acme/ui/toast";
 
 import { Provider as ConvexProvider } from "~/context/convex-context";
 import { env } from "~/env";
-import { Store as AuthStore } from "~/lib/auth-store";
+import * as Auth from "~/features/auth/atom";
+import { LoginModal } from "~/features/auth/molecules/login-modal";
 
 import "~/app/styles.css";
 
@@ -48,6 +49,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
 });
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: ["500"],
+});
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
@@ -60,11 +66,15 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           "bg-background text-foreground min-h-screen font-sans antialiased",
           geistSans.variable,
           geistMono.variable,
+          roboto.variable,
         )}
       >
         <ThemeProvider>
           <ConvexProvider>
-            <AuthStore>{props.children}</AuthStore>
+            <Auth.Store>
+              {props.children}
+              <LoginModal />
+            </Auth.Store>
           </ConvexProvider>
           <Toaster />
         </ThemeProvider>

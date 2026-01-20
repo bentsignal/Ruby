@@ -22,13 +22,15 @@
     "@tanstack/react-query": "catalog:",
     "babel-plugin-react-compiler": "^1.0.0",
     "better-auth": "catalog:",
+    "class-variance-authority": "catalog:",
     "convex": "catalog:",
-    "lucide-react": "^0.562.0",
+    "lucide-react": "catalog:",
     "next": "^16.0.9",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "rostra": "catalog:",
     "superjson": "2.2.3",
+    "tailwind-merge": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

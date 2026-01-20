@@ -1,15 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { createStore } from "rostra";
 
 import { api } from "@acme/convex/api";
 
 import { useLoading } from "~/hooks/use-loading";
-import { authClient } from "./auth-client";
+import { authClient } from "../../../lib/auth-client";
 
 function useInternalStore() {
   const { isLoading, start } = useLoading();
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const { isAuthenticated: imSignedIn } = useConvexAuth();
   const imSignedOut = !imSignedIn;
@@ -39,6 +42,8 @@ function useInternalStore() {
     imSignedIn,
     signInWithGoogle,
     signOut,
+    isLoginModalOpen,
+    setIsLoginModalOpen,
   };
 }
 
