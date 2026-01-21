@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import type { Doc } from "@acme/convex/model";
+import type { UIProfile } from "@acme/convex/types";
 
 import * as Auth from "~/features/auth/atom";
 import * as Profile from "../atom";
 
-const DefaultProfile = ({ profile }: { profile: Doc<"profiles"> }) => {
+const DefaultProfile = ({ profile }: { profile: UIProfile }) => {
   return (
     <SafeAreaView>
       <Profile.Store profile={profile}>
