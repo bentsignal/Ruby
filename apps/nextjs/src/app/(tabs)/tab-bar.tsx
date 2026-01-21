@@ -19,7 +19,7 @@ function TabBar() {
         "flex items-center gap-1",
         "fixed bottom-6 left-1/2 z-50 -translate-x-1/2",
         "bg-sidebar/80 border-sidebar-border border",
-        "rounded-full px-2 py-2",
+        "rounded-full px-3 py-2",
         "shadow-lg backdrop-blur-sm",
       )}
     >
