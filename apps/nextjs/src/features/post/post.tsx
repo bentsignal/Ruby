@@ -1,0 +1,54 @@
+import Image from "next/image";
+import { Bookmark, Heart, MessageCircle, Share } from "lucide-react";
+
+import type { PostWithProfile } from "@acme/convex/types";
+
+import * as Profile from "~/features/profile/atom";
+
+export const Post = ({ post }: { post: PostWithProfile }) => {
+  return (
+    <article className="border-border bg-card flex flex-col gap-3 rounded-xl border p-4">
+      <Profile.Store profile={post.creator}>
+        <div className="flex items-center gap-3">
+          <Profile.ProfileImage variant="post" />
+          <Profile.ProfileInfo />
+          <span className="text-muted-foreground ml-auto text-xs">
+            {new Date(post._creationTime).toLocaleDateString()}
+          </span>
+        </div>
+      </Profile.Store>
+
+      {post.imageUrls.length > 0 && post.imageUrls[0] && (
+        <div className="bg-muted relative w-full overflow-hidden rounded-lg">
+          <Image
+            src={post.imageUrls[0]}
+            alt={post.caption ?? "Post image"}
+            width={800}
+            height={600}
+            className="object-cover"
+          />
+        </div>
+      )}
+
+      {post.caption && (
+        <p className="text-sm leading-relaxed">{post.caption}</p>
+      )}
+
+      <div className="flex items-center gap-6">
+        <button className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-2">
+          <Heart className="h-5 w-5" />
+        </button>
+        <button className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-2">
+          <MessageCircle className="h-5 w-5" />
+        </button>
+        <button className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-2">
+          <Bookmark className="h-5 w-5" />
+        </button>
+        <div className="flex-1" />
+        <button className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-2">
+          <Share className="h-5 w-5" />
+        </button>
+      </div>
+    </article>
+  );
+};

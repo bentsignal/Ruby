@@ -1,5 +1,5 @@
 import { query } from "./_generated/server";
-import { redactProfileData } from "./profile";
+import { DeletedProfile, getPublicProfile } from "./profile";
 
 export const getAll = query({
   args: {},
@@ -8,15 +8,12 @@ export const getAll = query({
     const postsWithProfiles = await Promise.all(
       posts.map(async (post) => {
         const profile = await ctx.db.get(post.profileId);
-        if (!profile) {
-          return null;
-        }
         return {
           ...post,
-          profile: redactProfileData(profile),
+          creator: profile ? getPublicProfile(profile) : DeletedProfile,
         };
       }),
     );
-    return postsWithProfiles.filter((post) => post !== null);
+    return postsWithProfiles;
   },
 });

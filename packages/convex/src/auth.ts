@@ -18,12 +18,17 @@ export const authComponent = createClient<DataModel>(components.betterAuth, {
     user: {
       onCreate: async (ctx, doc) => {
         const username = await generateUsername(ctx, doc.name);
-        await ctx.db.insert("profiles", {
+        const profileId = await ctx.db.insert("profiles", {
           userId: doc._id,
           name: doc.name,
           username,
-          image: doc.image ?? undefined,
         });
+        if (doc.image) {
+          await ctx.scheduler.runAfter(0, internal.uploadthing.uploadPFP, {
+            profileId,
+            url: doc.image,
+          });
+        }
       },
     },
   },

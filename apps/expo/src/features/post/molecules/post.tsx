@@ -11,7 +11,7 @@ export const Post = ({ post }: { post: PostWithProfile }) => {
   const foreground = useVar("foreground");
   return (
     <View className="mb-8 flex-col gap-2">
-      <Profile.Store profile={post.profile}>
+      <Profile.Store profile={post.creator}>
         <View className="mx-2 flex-row items-center gap-2">
           <Profile.ProfileImage className="mt-1" variant="post" />
           <Profile.ProfileInfo />

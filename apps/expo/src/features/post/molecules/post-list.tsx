@@ -10,11 +10,11 @@ import type { PostWithProfile } from "@acme/convex/types";
 
 import { Post } from "./post";
 
-const PostListItem = ({ item }: LegendListRenderItemProps<PostWithProfile>) => {
+function PostListItem({ item }: LegendListRenderItemProps<PostWithProfile>) {
   return <Post post={item} />;
-};
+}
 
-const PostList = ({ posts }: { posts: PostWithProfile[] }) => {
+function PostList({ posts }: { posts: PostWithProfile[] }) {
   const inset = useSafeAreaInsets();
   return (
     <LegendList
@@ -27,20 +27,19 @@ const PostList = ({ posts }: { posts: PostWithProfile[] }) => {
       recycleItems={true}
     />
   );
-};
+}
 
-const Skeletons = () => {
+function Skeletons() {
   const emptyPosts = Array.from({ length: 10 }).map((_, index) => ({
     _id: index as unknown as Id<"posts">,
     _creationTime: 0,
     profileId: "" as Id<"profiles">,
     imageUrls: [],
     caption: "",
-    profile: {
-      _id: "" as Id<"profiles">,
-      name: "",
+    creator: {
       username: "",
-      image: "",
+      name: "",
+      image: undefined,
     },
   }));
   return (
@@ -50,6 +49,6 @@ const Skeletons = () => {
       ))}
     </SafeAreaView>
   );
-};
+}
 
 export { PostList, Skeletons };
