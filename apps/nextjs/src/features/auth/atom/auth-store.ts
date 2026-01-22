@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useConvexAuth, useQuery } from "convex/react";
 import { createStore } from "rostra";
 
@@ -16,7 +17,18 @@ function useInternalStore({
 }) {
   const { isLoading, start } = useLoading();
 
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const showLogin = searchParams.get("showLogin");
+  const redirectToFromParams = searchParams.get("redirectTo");
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(
+    showLogin === "true",
+  );
+  const [redirectTo, setRedirectTo] = useState<string | null>(
+    redirectToFromParams ?? null,
+  );
+  const setRedirectURL = (url: string) => setRedirectTo(url);
 
   // use serverside auth value until client is mounted
   const { isAuthenticated: isAuthenticatedClientSide } = useConvexAuth();
@@ -39,7 +51,7 @@ function useInternalStore({
     start(async () => {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
+        callbackURL: redirectTo ?? "/",
       });
     });
   };
@@ -47,6 +59,7 @@ function useInternalStore({
   const signOut = () => {
     if (imSignedOut) return;
     start(async () => {
+      router.push("/");
       await authClient.signOut();
     });
   };
@@ -60,6 +73,7 @@ function useInternalStore({
     signOut,
     isLoginModalOpen,
     setIsLoginModalOpen,
+    setRedirectURL,
   };
 }
 
