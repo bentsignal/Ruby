@@ -1,7 +1,7 @@
 import type { Infer } from "convex/values";
 
 import type { Id } from "./_generated/dataModel";
-import type { vImage, vPost, vProfile } from "./validators";
+import type { vFriendshipStatus, vImage, vPost, vProfile } from "./validators";
 
 type UIImage = Infer<typeof vImage>;
 
@@ -16,4 +16,20 @@ type UIPost = Omit<Post, "profileId" | "imagesIds"> & {
   images: UIImage[];
 };
 
-export type { Post, UIPost, Profile, UIProfile, UIImage };
+type FriendshipStatus = Infer<typeof vFriendshipStatus>;
+type Relationship =
+  | null
+  | "friends"
+  | "pending-incoming"
+  | "pending-outgoing"
+  | "my-profile";
+
+export type {
+  Post,
+  UIPost,
+  Profile,
+  UIProfile,
+  UIImage,
+  FriendshipStatus,
+  Relationship,
+};

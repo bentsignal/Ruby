@@ -1,34 +1,31 @@
-import Image from "next/image";
+import Link from "next/link";
 
 import * as Auth from "~/features/auth/atom";
+import * as Profile from "~/features/profile/atom";
 
 function SmallProfilePreview() {
   const myProfile = Auth.useStore((s) => s.myProfile);
   const imNotSignedIn = Auth.useStore((s) => s.imSignedIn === false);
-  if (imNotSignedIn) {
+  if (imNotSignedIn || !myProfile) {
     return <Auth.TakeMeToLoginLink />;
   }
   return (
     <div className="flex flex-col items-start gap-2">
-      <div className="flex items-center gap-2">
-        {myProfile?.image ? (
-          <Image
-            src={myProfile.image}
-            alt={myProfile.name}
-            width={48}
-            height={48}
-            className="size-12 rounded-full"
-          />
-        ) : (
-          <div className="bg-muted size-12 rounded-full" />
-        )}
-        <div className="flex flex-col">
-          <p className="text-sm font-medium">{myProfile?.name}</p>
-          <p className="text-muted-foreground text-sm">
-            @{myProfile?.username}
-          </p>
-        </div>
-      </div>
+      <Profile.Store profile={myProfile}>
+        <Link
+          href={`/${myProfile.username}`}
+          prefetch={true}
+          className="cursor-pointer"
+        >
+          <div className="flex items-center gap-2">
+            <Profile.PFP variant="sm" className="cursor-pointer" />
+            <div className="flex flex-col">
+              <Profile.Name className="text-sm font-bold" />
+              <Profile.Username className="text-muted-foreground text-sm font-semibold" />
+            </div>
+          </div>
+        </Link>
+      </Profile.Store>
       <Auth.SignOutLink />
     </div>
   );

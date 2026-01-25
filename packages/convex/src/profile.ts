@@ -1,8 +1,9 @@
 import { v } from "convex/values";
 
 import type { Doc } from "./_generated/dataModel";
-import type { UIProfile } from "./types";
-import { internalMutation, query } from "./_generated/server";
+import type { Relationship, UIProfile } from "./types";
+import { internalMutation } from "./_generated/server";
+import { getRelationshipHelper } from "./friends";
 import { authedQuery } from "./utils";
 
 export const DeletedProfile = {
@@ -16,29 +17,37 @@ export const getPublicProfile = (profile: Doc<"profiles">): UIProfile => {
   return publicProfile;
 };
 
-export const get = query({
+export const getByUsername = authedQuery({
   args: {
-    profileId: v.id("profiles"),
+    username: v.string(),
   },
-  handler: async (ctx, args): Promise<UIProfile | null> => {
-    const profile = await ctx.db.get(args.profileId);
-    if (!profile) {
-      return null;
-    }
-    return getPublicProfile(profile);
+  handler: async (
+    ctx,
+    args,
+  ): Promise<{
+    info: UIProfile;
+    relationship: Relationship;
+  } | null> => {
+    const profile = await ctx.db
+      .query("profiles")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
+      .first();
+    if (!profile) return null;
+    const { relationship } = await getRelationshipHelper({
+      ctx,
+      profileRequestingInfo: ctx.myProfile._id,
+      otherProfile: profile._id,
+    });
+    return {
+      info: getPublicProfile(profile),
+      relationship,
+    };
   },
 });
 
 export const getMine = authedQuery({
-  handler: async (ctx): Promise<UIProfile | null> => {
-    const myProfile = await ctx.db
-      .query("profiles")
-      .withIndex("by_userId", (q) => q.eq("userId", ctx.user.subject))
-      .first();
-    if (!myProfile) {
-      return null;
-    }
-    return getPublicProfile(myProfile);
+  handler: (ctx) => {
+    return getPublicProfile(ctx.myProfile);
   },
 });
 

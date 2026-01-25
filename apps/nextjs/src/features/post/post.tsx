@@ -10,8 +10,11 @@ export const Post = ({ post }: { post: UIPost }) => {
     <article className="border-border bg-card flex flex-col gap-3 rounded-xl border p-4">
       <Profile.Store profile={post.creator}>
         <div className="flex items-center gap-3">
-          <Profile.ProfileImage variant="post" />
-          <Profile.ProfileInfo />
+          <Profile.PFP variant="sm" />
+          <div className="flex flex-col">
+            <Profile.Name className="text-sm font-bold" />
+            <Profile.Username className="text-muted-foreground text-xs font-semibold" />
+          </div>
           <span className="text-muted-foreground ml-auto text-xs">
             {new Date(post._creationTime).toLocaleDateString()}
           </span>

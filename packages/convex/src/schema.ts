@@ -1,6 +1,6 @@
 import { defineSchema, defineTable } from "convex/server";
 
-import { vImage, vPost, vProfile, vTrip } from "./validators";
+import { vFriendship, vImage, vPost, vProfile, vTrip } from "./validators";
 
 export default defineSchema(
   {
@@ -10,6 +10,9 @@ export default defineSchema(
     profiles: defineTable(vProfile)
       .index("by_userId", ["userId"])
       .index("by_username", ["username"]),
+    friends: defineTable(vFriendship)
+      .index("by_profileA", ["profileIdA"])
+      .index("by_profileB", ["profileIdB"]),
   },
   { schemaValidation: true },
 );

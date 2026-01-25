@@ -61,7 +61,7 @@ function TabBar() {
           />
         </TabBarButton>
       </TabBarLink>
-      <HoverCard.Container>
+      <HoverCard.Container openDelay={1250}>
         <HoverCard.Trigger asChild>
           <TabBarLink href={`/${myUsername}`} label="Profile">
             <TabBarButton>
@@ -77,7 +77,7 @@ function TabBar() {
             </TabBarButton>
           </TabBarLink>
         </HoverCard.Trigger>
-        <HoverCard.Content className="flex w-auto! flex-col items-start">
+        <HoverCard.Content className="flex flex-col items-start px-6! pt-5 pb-3!">
           <SmallProfilePreview />
           <Theme.Toggle />
         </HoverCard.Content>

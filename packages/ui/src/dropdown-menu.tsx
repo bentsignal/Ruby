@@ -9,13 +9,13 @@ import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 import { cn } from "@acme/ui";
 
-export function DropdownMenu({
+export function Container({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
 }
 
-export function DropdownMenuPortal({
+export function Portal({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
   return (
@@ -23,7 +23,7 @@ export function DropdownMenuPortal({
   );
 }
 
-export function DropdownMenuTrigger({
+export function Trigger({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
   return (
@@ -34,7 +34,7 @@ export function DropdownMenuTrigger({
   );
 }
 
-export function DropdownMenuContent({
+export function Content({
   className,
   sideOffset = 4,
   ...props
@@ -54,7 +54,7 @@ export function DropdownMenuContent({
   );
 }
 
-export function DropdownMenuGroup({
+export function Group({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Group>) {
   return (
@@ -62,7 +62,7 @@ export function DropdownMenuGroup({
   );
 }
 
-export function DropdownMenuItem({
+export function Item({
   className,
   inset,
   variant = "default",
@@ -77,7 +77,7 @@ export function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none hover:cursor-pointer data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -85,7 +85,7 @@ export function DropdownMenuItem({
   );
 }
 
-export function DropdownMenuCheckboxItem({
+export function CheckboxItem({
   className,
   children,
   checked,
@@ -111,7 +111,7 @@ export function DropdownMenuCheckboxItem({
   );
 }
 
-export function DropdownMenuRadioGroup({
+export function RadioGroup({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
   return (
@@ -122,7 +122,7 @@ export function DropdownMenuRadioGroup({
   );
 }
 
-export function DropdownMenuRadioItem({
+export function RadioItem({
   className,
   children,
   ...props
@@ -146,7 +146,7 @@ export function DropdownMenuRadioItem({
   );
 }
 
-export function DropdownMenuLabel({
+export function Label({
   className,
   inset,
   ...props
@@ -166,7 +166,7 @@ export function DropdownMenuLabel({
   );
 }
 
-export function DropdownMenuSeparator({
+export function Separator({
   className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
@@ -179,7 +179,7 @@ export function DropdownMenuSeparator({
   );
 }
 
-export function DropdownMenuShortcut({
+export function Shortcut({
   className,
   ...props
 }: React.ComponentProps<"span">) {
@@ -195,7 +195,7 @@ export function DropdownMenuShortcut({
   );
 }
 
-export function DropdownMenuSub({
+export function Sub({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
   return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />;
@@ -225,7 +225,7 @@ export function DropdownMenuSubTrigger({
   );
 }
 
-export function DropdownMenuSubContent({
+export function SubContent({
   className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {

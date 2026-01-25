@@ -1,6 +1,13 @@
-import { redirectIfNotLoggedIn } from "~/lib/auth-server";
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
 
-export default async function ProfilePage({
+import { api } from "@acme/convex/api";
+import { Separator } from "@acme/ui/separator";
+
+import * as Profile from "~/features/profile/atom";
+import { fetchAuthQuery, redirectIfNotLoggedIn } from "~/lib/auth-server";
+
+export default async function ProfileWrapper({
   params,
 }: {
   params: Promise<{ username: string }>;
@@ -8,10 +15,52 @@ export default async function ProfilePage({
   const { username } = await params;
   await redirectIfNotLoggedIn({ redirectURL: `/${username}` });
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <h1 className="text-foreground text-2xl font-bold">
-        Profile: {username}
-      </h1>
+    <div className="max-w-auto mx-auto flex flex-col gap-4 px-4 pt-8 sm:max-w-md sm:pt-12 lg:max-w-xl">
+      <Suspense fallback={<SkeletonProfile />}>
+        <ProfilePage username={username} />
+      </Suspense>
+    </div>
+  );
+}
+
+async function ProfilePage({ username }: { username: string }) {
+  const result = await fetchAuthQuery(api.profile.getByUsername, { username });
+  if (result === null) {
+    return notFound();
+  }
+  const { info: profile, relationship } = result;
+  return (
+    <Profile.Store profile={profile} relationship={relationship}>
+      <div className="flex items-center gap-4">
+        <Profile.PFP variant="md" />
+        <div className="flex flex-col">
+          <Profile.Name className="font-bold" />
+          <Profile.Username />
+        </div>
+        <Profile.PrimaryButton className="ml-auto hidden lg:flex" />
+      </div>
+      <Profile.Bio />
+      <Profile.UserProvidedLink className="mb-1" />
+      <Profile.PrimaryButton className="flex lg:hidden" />
+      <Separator />
+    </Profile.Store>
+  );
+}
+
+function SkeletonProfile() {
+  return (
+    <div className="flex animate-pulse flex-col gap-5">
+      <div className="flex items-center gap-4">
+        <Profile.BlankPFP variant="md" />
+        <div className="flex flex-col gap-2">
+          <div className="bg-muted h-4 w-24 rounded-full" />
+          <div className="bg-muted h-4 w-16 rounded-full" />
+        </div>
+        <div className="bg-muted ml-auto h-9 w-28 rounded-full" />
+      </div>
+      <div className="bg-muted mb-1 h-4 w-[65%] rounded-full" />
+      <div className="bg-muted mb-1 h-4 w-36 rounded-full" />
+      <Separator />
     </div>
   );
 }
